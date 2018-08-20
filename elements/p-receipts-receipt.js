@@ -1,12 +1,10 @@
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
 import { TYPE_LABELS } from '../lib/types.js';
 
+import './p-money.js';
+
 function typeToLabel(type) {
     return TYPE_LABELS[type];
-}
-
-function formatValue(value) {
-    return value.toFixed(2);
 }
 
 export class PReceiptsReceipt extends LitElement {
@@ -26,12 +24,9 @@ export class PReceiptsReceipt extends LitElement {
                     justify-content: space-between;
                     align-items: center;
                 }
-                .value {
-                    font-size: 32px;
-                }
             </style>
             <div>${typeToLabel(type)}</div>
-            <div class="value">${formatValue(value)}</div>
+            <p-money value=${value}></p-money>
             
         `;
     }

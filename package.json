@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "rollup -c && copy index.html .\\public\\index.html && copy manifest.json .\\public\\manifest.json"
+  },
   "dependencies": {
     "@polymer/lit-element": "^0.5.2"
+  },
+  "devDependencies": {
+    "rollup": "^0.64.1",
+    "rollup-plugin-node-resolve": "^3.3.0"
   }
 }
