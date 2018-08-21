@@ -22,11 +22,13 @@ export class PReceiptsAddView extends LitElement {
                     border-bottom: 1px solid grey;
                     text-align: center;
                     min-width: 92px;
-                    width: 92px;
                     height: 38px;
                     border: 2px solid grey;
                     border-radius: 8px;
                     outline: none;
+                }
+                input[type="number"] {
+                    width: 92px;
                 }
                 .actions {
                     display: flex;
@@ -56,11 +58,39 @@ export class PReceiptsAddView extends LitElement {
                     width: 64px;
                     height: 64px;
                 }
+                .date-inputs {
+                    display: flex;
+                    flex-direction: row;
+                }
+                .date-inputs>* {
+                    font-size: 16px;
+                    background: white;
+                }
+                .date-inputs>*:first-child {
+                    border-top-right-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                    border-right: 0px;
+                }
+                .date-inputs>*:last-child {
+                    border-top-left-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                }
+                #date {
+                    width: 120px;
+                }
+                #time {
+                    min-width: auto;
+                    width: 70px;
+                }
             </style>
             <form on-submit=${(e) => this._submit(e)}>
                 <div class="actions">
                     <button class="btn" type="button" on-click=${() => this._cancel()}>Cancel</button>
                     <button class="btn">Save</button>
+                </div>
+                <div class="date-inputs">
+                    <input id="date" type="date" />
+                    <input id="time" type="time" step="60"/>
                 </div>
                 <input id="input" type="number" step="0.01" autofocus />
                 <div></div>
@@ -70,6 +100,12 @@ export class PReceiptsAddView extends LitElement {
                 <span>Success</span>
             </div>
         `;
+    }
+    get dateEl() {
+        return cachedQuerySelector(this.shadowRoot, '#date');
+    }
+    get timeEl() {
+        return cachedQuerySelector(this.shadowRoot, '#time');
     }
     get inputEl() {
         return cachedQuerySelector(this.shadowRoot, '#input');
@@ -88,7 +124,8 @@ export class PReceiptsAddView extends LitElement {
     }
     _submit(e) {
         e.preventDefault();
-        addReceipt(RECEIPT_TYPES.FOOD, parseFloat(this.inputEl.value))
+        const date = new Date(this.dateEl.valueAsNumber + this.timeEl.valueAsNumber);
+        addReceipt(RECEIPT_TYPES.FOOD, parseFloat(this.inputEl.value), date)
             .then(() => {
                 this.successEl.style.display = 'flex';
                 const tickAnim = this.tickEl.animate({
@@ -120,6 +157,11 @@ export class PReceiptsAddView extends LitElement {
     }
     reset() {
         this.formEl.reset();
+        const coeff = 1000 * 60;
+        const now = new Date();
+        const roundNow = new Date(Math.round(now.getTime() / coeff) * coeff)
+        this.dateEl.valueAsDate = roundNow;
+        this.timeEl.valueAsDate = roundNow;
         this.successEl.style.display = 'none';
     }
     enter() {

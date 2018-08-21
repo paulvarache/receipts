@@ -69,6 +69,12 @@ export class PReceiptsApp extends LitElement {
                 .bottombar button {
                     flex: 1;
                     padding: 16px 0px;
+                    display: flex;
+                    flex-direction: column;
+                    color: white;
+                    align-items: center;
+                    font-size: 12px;
+                    font-weight: 400;
                 }
                 .bottombar button svg {
                     fill: white;
@@ -110,9 +116,18 @@ export class PReceiptsApp extends LitElement {
                                        hidden$=${isHidden(VIEWS.TABLE, view, nextView)}></p-receipts-table-view>
             </div>
             <div class="bottombar">
-                <button class="btn" on-click=${() => navigateTo(VIEWS.USER)}>${userIcon}</button>
-                <button class="btn" on-click=${() => navigateTo(VIEWS.LIST)}>${home}</button>
-                <button class="btn" on-click=${() => navigateTo(VIEWS.TABLE)}>${table}</button>
+                <button class="btn" on-click=${() => navigateTo(VIEWS.USER)}>
+                    ${userIcon}
+                    <span>User</span>
+                </button>
+                <button class="btn" on-click=${() => navigateTo(VIEWS.LIST)}>
+                    ${home}
+                    Receipts
+                </button>
+                <button class="btn" on-click=${() => navigateTo(VIEWS.TABLE)}>
+                    ${table}
+                    Split
+                </button>
             </div>
         `;
     }

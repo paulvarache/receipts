@@ -21,9 +21,16 @@ export class PMoney extends LitElement {
                     display: inline-block;
                 }
                 .big {
-                    font-size: 32px;
+                    font-size: 28px;
+                }
+                .pound {
+                    opacity: 0.7;
+                }
+                .small {
+                    opacity: 0.7;
                 }
             </style>
+            <span class="pound">£</span>
             <span class="big">${big(value)}.</span>
             <span class="small">${small(value)}</span>
         `;

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c && copy index.html .\\public\\index.html && copy manifest.json .\\public\\manifest.json"
+    "build": "rollup -c && copy index.html .\\public\\index.html && copy manifest.json .\\public\\manifest.json && copy images .\\public\\images\\"
   },
   "dependencies": {
     "@polymer/lit-element": "^0.5.2"

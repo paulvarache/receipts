@@ -21,11 +21,11 @@ export const fab = html`
             padding: 0;
             right: 16px;
             bottom: 16px;
-            width: 48px;
-            height: 48px;
+            width: 64px;
+            height: 64px;
             background: var(--primary-color);
             border-radius: 50%;
-            font-size: 32px;
+            font-size: 36px;
             color: white;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             transition: all 0.3s cubic-bezier(.25,.8,.25,1);

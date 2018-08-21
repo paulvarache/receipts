@@ -1,11 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
-import { TYPE_LABELS } from '../lib/types.js';
+import { RECEIPT_LABELS, RECEIPT_ICONS } from '../lib/types.js';
 
 import './p-money.js';
-
-function typeToLabel(type) {
-    return TYPE_LABELS[type];
-}
 
 export class PReceiptsReceipt extends LitElement {
     static get properties() {
@@ -20,12 +16,21 @@ export class PReceiptsReceipt extends LitElement {
                 :host {
                     display: flex;
                     flex-direction: row;
-                    padding: 16px 8px;
+                    padding: 16px 16px;
                     justify-content: space-between;
                     align-items: center;
                 }
+                .icon svg {
+                    width: 32px;
+                    height: 32px;
+                }
+                .label {
+                    flex: 1;
+                    padding-left: 32px;
+                }
             </style>
-            <div>${typeToLabel(type)}</div>
+            <div class="icon">${RECEIPT_ICONS[type]}</div>
+            <div class="label">${RECEIPT_LABELS[type]}</div>
             <p-money value=${value}></p-money>
             
         `;
