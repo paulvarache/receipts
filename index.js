@@ -29,6 +29,7 @@ class App {
         }
         window.addEventListener('navigate', (e) => this.navigate(e.detail));
         window.addEventListener('add-receipt', (e) => this.addReceipt(e.detail));
+        window.addEventListener('remove-receipt', (e) => this.removeReceipt(e.detail));
     }
     updateList() {
         this.api.list(this.root.user.id)
@@ -45,6 +46,11 @@ class App {
     }
     addReceipt(data) {
         this.root.receipts.unshift(data);
+        this.root.receipts = this.root.receipts.slice(0);
+    }
+    removeReceipt(id) {
+        const index = this.root.receipts.findIndex(r => r.id === id);
+        this.root.receipts.splice(index, 1);
         this.root.receipts = this.root.receipts.slice(0);
     }
     setUser(user, save = true) {

@@ -1,6 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
 import './p-receipts-receipt.js';
 import './p-date.js';
+import { removeReceipt } from '../lib/actions.js';
 
 function isSameDate(a, b) {
     const aDate = new Date(a);
@@ -31,16 +32,22 @@ export class PReceiptsList extends LitElement {
                 }
             </style>
             <div class="list">
-                ${receipts.map(({ value, type, timestamp }, index) => {
+                ${receipts.map(({ id, value, type, timestamp, label }, index) => {
                     const displayDate = receipts[index - 1] ? !isSameDate(receipts[index - 1].timestamp, timestamp) : false;
                     return html`
                         ${!index || displayDate ? html`<p-date value=${timestamp}></p-date>` : ''}
                         ${index && !displayDate  ? html`<hr/>` : ''}
-                        <p-receipts-receipt value=${value} type=${type}></p-receipts-receipt>
+                        <p-receipts-receipt value=${value}
+                                            type=${type}
+                                            label=${label}
+                                            on-remove=${() => this._removeReceipt(id)}></p-receipts-receipt>
                     `;
                 })}
             </div>
         `;
+    }
+    _removeReceipt(key) {
+        removeReceipt(key);
     }
 }
 

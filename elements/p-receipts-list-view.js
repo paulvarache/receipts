@@ -20,6 +20,12 @@ export class PReceiptsListView extends LitElement {
                 p-receipts-list {
                     overflow-y: auto;
                 }
+                .fab-container {
+                    pointer-events: none;
+                }
+                .btn.fab {
+                    pointer-events: all;
+                }
                 .fab-container, .empty {
                     position: absolute;
                     top: 0;

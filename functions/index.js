@@ -38,7 +38,7 @@ app.get('/:uid', async (req, res) => {
         .get();
     const data = [];
     snap.forEach((snapItem) => {
-        data.push(snapItem.data());
+        data.push(Object.assign(snapItem.data(), { id: snapItem.id }));
     });
     res.send(data);
 });
@@ -48,9 +48,23 @@ app.post('/:uid', async (req, res) => {
         type: req.body.type,
         value: req.body.value,
         timestamp: req.body.timestamp,
+        label: req.body.label,
     };
-    const ref = await admin.firestore().collection('users').doc(req.params.uid).collection('receipts').add(receipt);
+    const ref = await admin.firestore()
+        .collection('users')
+        .doc(req.params.uid)
+        .collection('receipts')
+        .add(receipt);
     res.send(ref.id);
+});
+app.delete('/:uid/:id', async (req, res) => {
+    await admin.firestore()
+        .collection('users')
+        .doc(req.params.uid)
+        .collection('receipts')
+        .doc(req.params.id)
+        .delete();
+    res.send({});
 });
 
 const users = express();

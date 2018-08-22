@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@kano/common@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kano/common/-/common-1.0.2.tgz#84f12d7e924a0b20434bc2d27ee8690b208777a3"
+
 "@polymer/lit-element@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@polymer/lit-element/-/lit-element-0.5.2.tgz#8d4e2d1ada27cf0f1a38b7b0eb9fadae92eb63df"

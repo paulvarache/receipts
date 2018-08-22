@@ -68,7 +68,6 @@ export class PReceiptsApp extends LitElement {
                 }
                 .bottombar button {
                     flex: 1;
-                    padding: 16px 0px;
                     display: flex;
                     flex-direction: column;
                     color: white;
